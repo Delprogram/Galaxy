@@ -1,0 +1,76 @@
+#: import menu menu
+
+MainWidget:
+
+<MainWidget>:
+    canvas.after:
+
+        Color:
+            rgba: (0, 0, 0, .0000000000001) if root.text_button_pause == "PAUSE" or root.text_button_pause == "" else (0, 0, 0, .5)
+        Rectangle:
+            size: self.size
+    canvas.before:
+        Rectangle:
+            size: self.size
+            source: "RESSOURCES/images/bg1.jpg"
+
+    menu_widget: menu_widget
+    perspective_point_x: self.width/2
+    perspective_point_y: self.height * 0.75
+
+    MenuWidget:
+        id: menu_widget
+
+    Label:
+        text: "SCORE : " + str(root.score_txt)
+        text_size: self.size
+        font_size: dp(20)
+        font_name: "RESSOURCES/fonts/eurostile.ttf"
+        pos_hint: {"x": .0489, "top": 1}
+        size_hint: .9, .1
+        #halign: ""
+        #valign: "top"
+    Label:
+        text: "MEILLEUR SCORE : " + str(int(root.score_better))
+        text_size: self.size
+        font_size: dp(20)
+        font_name: "RESSOURCES/fonts/eurostile.ttf"
+        pos_hint: {"x": .049, "top": 1}
+        size_hint: .9, .18
+        #halign: "left"
+        #valign: "top"
+    Button:
+        font_size: dp(20)
+        padding: dp(10), dp(5)
+        font_name: "RESSOURCES/fonts/eurostile.ttf"
+        text: root.text_button_pause
+        size_hint: None, None
+        size: self.texture_size
+        #text_size: self.size
+        bold: True
+        pos_hint: {"x": .89, "top": .95}
+        #size_hint: .1, .07
+        disabled : root.go_decompt
+        on_press: root.on_pause_button_pressed_actived() if root.button_pause == False else root.on_pause_button_pressed_desactived(self)
+        background_normal: ''
+        background_color: root.backgroung_button_pause
+        halign: "center"
+        valign: "center"
+    Label:
+        text: "E  N    P  A  U  S  E" if root.text_button_pause == "PLAY" and not root.go_decompt else ""
+        font_name: "RESSOURCES/fonts/Sackers-Gothic-Std-Light.ttf"
+        font_size: dp(60)
+        #text: root.parent.menu_title
+        pos_hint: {"center_x": .5, "center_y": .6}
+    Label:
+        text: root.decompt
+        #font_name: "RESSOURCES/fonts/Sackers-Gothic-Std-Light.ttf"
+        font_size: dp(95)
+        bold: True
+        color: 0, 0, 0
+        #text: root.parent.menu_title
+        pos_hint: {"center_x": .5, "center_y": .5}
+
+
+
+
